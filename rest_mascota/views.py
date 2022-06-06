@@ -5,7 +5,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
-from vetZafari.models import Mascota
+from vet.models import Mascota
 from rest_mascota.serializers import MascotaSerializer
 
 @csrf_exempt
