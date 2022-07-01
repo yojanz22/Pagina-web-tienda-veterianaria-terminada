@@ -17,11 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
+from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('vet.urls')),
+    path('api/', include('rest_mascota.urls')),
+    path('api/',include('rest_producto.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('logout', LogoutView.as_view()),
 ]
 
 if settings.DEBUG:
