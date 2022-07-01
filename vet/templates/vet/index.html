@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
+    <title>Inicio</title>
 
     <link rel="stylesheet" href="{% static 'vet/css/estilos.css'%}">
     <link rel="stylesheet" href="{% static 'vet/css/styleB.css'%}">
@@ -29,7 +29,7 @@
         <div class="lds-facebook">
             <div></div>
             <div></div>
-            <div></div>t
+            <div></div>
         </div>
     </div>
     <header>
@@ -39,12 +39,17 @@
                     <img src="{% static 'vet/img/logo.png'%}" alt="">
                 </div>
                 <div class="enlaces" id="enlaces">
-                    <a href="#" id="enlace-equipo" class="btn-header">Categorias</a>
-                    <a href="#" id="enlace-servicio" class="btn-header">Servicios</a>
-                    <a href="{% url 'galeria' %}">galeria</a>
-                    <a href="{% url 'contacto' %}">contacto</a>
-                    <a href="{% url 'login' %}">login</a>
-                    <a href="{% url 'registro' %}">registro</a>
+                    <a href="{% url 'contacto' %}">Contacto</a>
+                    <a href="{% url 'mascotas' %}">Mascotas</a>
+                    <a href="{% url 'registro' %}">Registro</a>
+                    
+
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout'%}">Cerrar sesion</a>
+                        <a href="#"> ¡Hola!,{{ user.username }}
+                    {% else %}
+                        <a href="{% url 'login' %}"> Iniciar sesion</a>
+                    {% endif %}
                 </div>
 
                 <div class="icono " id="open ">
@@ -57,24 +62,31 @@
             <h2>¡Cuidamos a tus animales!</h2>
         </div>
     </header>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="notifiaction {{mesage.tags}}">
+            {{ mesage }}
+        </div>
+        {% endfor %}
+    {% endif %}
     <main>
         <section class="team contenedor " id="equipo ">
-            <h3>Nuestros productos</h3>
-            <p class="after ">para tu mascota</p>
+            <h3>Nuestros productos.</h3>
+            <p class="after ">Para tu mascota.</p>
             <div class="card ">
 
                 <div class="content-card ">
                     <div class="people ">
-                        <img src="{% static 'vet/img/cat.webp'%} " alt=" ">
+                        <img src="{% static 'vet/img/gato.jpg'%} " alt=" ">
                     </div>
                     <div class="texto-team ">
-                        <h4>Gatos</h4>
+                        <h4>Gatos.</h4>
                         <p>Alimentos y demas para tu minino.</p>
                     </div>
                 </div>
                 <div class="content-card ">
                     <div class="people ">
-                        <img src="{% static 'vet/img/dog.jpg'%} " alt=" ">
+                        <img src="{% static 'vet/img/perro.jpg'%} " alt=" ">
                     </div>
                     <div class="texto-team ">
                         <h4>Perros</h4>
@@ -83,7 +95,7 @@
                 </div>
                 <div class="content-card ">
                     <div class="people ">
-                        <img src="{% static 'vet/img/other.jpg'%} " alt=" ">
+                        <img src="{% static 'vet/img/otrosD.jpg'%} " alt=" ">
                     </div>
                     <div class="texto-team ">
                         <h4>Otros</h4>
@@ -98,17 +110,17 @@
                 <p class="after ">Siempre mejorando para ti</p>
                 <div class="servicios ">
                     <div class="caja-servicios ">
-                        <img src="{% static 'vet/img/heart.png'%} " alt=" ">
+                        <img src="{% static 'vet/img/adopcion.png'%} " alt=" ">
                         <h4>ADOPCION</h4>
                         <p>Adopcion de animales.</p>
                     </div>
                     <div class="caja-servicios ">
-                        <img src="{% static 'vet/img/responsive.png'%} " alt=" ">
+                        <img src="{% static 'vet/img/carrito.png'%} " alt=" ">
                         <h4>COMPRAS</h4>
                         <p>Compra de alimentos y mas para tus mascotas.</p>
                     </div>
                     <div class="caja-servicios ">
-                        <img src="{% static 'vet/img/efectos.png'%} " alt=" ">
+                        <img src="{% static 'vet/img/salud.png'%} " alt=" ">
                         <h4>ATENCION</h4>
                         <p>Atencion y cuidados para tus mascotas.</p>
                     </div>
@@ -131,64 +143,7 @@
 
                                         <p>
                                         </p>
-                                        <button>VER</button>
-                                    </div>
 
-                                    <div class="illustration ">
-
-                                    </div>
-                                </div>
-
-
-                                <div class="box2 box ">
-                                    <div class="bg "></div>
-                                    <div class="details ">
-                                        <div class="parent ">
-
-                                        </div>
-                                        <button>VER</button>
-                                    </div>
-
-                                    <div class="illustration ">
-
-                                    </div>
-                                </div>
-
-                                <div class="box3 box ">
-                                    <div class="bg "></div>
-                                    <div class="details ">
-                                        <h1>Promocion</h1>
-                                        <p>
-                                        </p>
-                                        <button>VER</button>
-                                    </div>
-
-                                    <div class="illustration ">
-
-                                    </div>
-                                </div>
-
-                                <div class="box4 box ">
-                                    <div class="bg "></div>
-                                    <div class="details ">
-                                        <h1>Promocion</h1>
-                                        <p>
-                                        </p>
-                                        <button>VER</button>
-                                    </div>
-
-                                    <div class="illustration ">
-
-                                    </div>
-                                </div>
-
-                                <div class="box5 box ">
-                                    <div class="bg "></div>
-                                    <div class="details ">
-                                        <h1>Promocion</h1>
-                                        <p>
-                                        </p>
-                                        <button>VER</button>
                                     </div>
 
                                     <div class="illustration ">
@@ -197,21 +152,11 @@
                                 </div>
 
                             </div>
+                            <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js "></script>
+                            <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CSSRulePlugin3.min.js "></script>
 
-
-                            <div class="trail ">
-                                <div class="box1 active ">1</div>
-                                <div class="box2 ">2</div>
-                                <div class="box3 ">3</div>
-                                <div class="box4 ">4</div>
-                                <div class="box5 ">5</div>
-                            </div>
-                        </div>
-                        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js "></script>
-                        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CSSRulePlugin3.min.js "></script>
-
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.2/gsap.min.js "></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.2/CSSRulePlugin.min.js "></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.2/gsap.min.js "></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.2/CSSRulePlugin.min.js "></script>
 
                     </body>
 
@@ -221,7 +166,7 @@
 
         </section>
         <section class="work contenedor " id="trabajo ">
-            <h3>Nuestros Productos</h3>
+            <h3>Te podemos ofrecer.</h3>
             <p class="after ">Hacemos de algo simple algo extraordinario</p>
             <div class="botones-work ">
                 <ul>
@@ -237,31 +182,31 @@
                         <img src="{% static 'vet/img/vina.jpg'%} " alt=" ">
                     </div>
                     <div class="textos-work ">
-                        <h4>VALPO</h4>
+                        <h4>Valparaíso.</h4>
                     </div>
                 </div>
                 <div class="cont-work programacion ">
                     <div class="img-work ">
-                        <img src="{% static 'vet/img/valpo.jpg'%} " alt=" ">
+                        <img src="{% static 'vet/img/vina2.jpg'%} " alt=" ">
                     </div>
                     <div class="textos-work ">
-                        <h4>VIÑA</h4>
+                        <h4>Viña del mar.</h4>
                     </div>
                 </div>
                 <div class="cont-work diseño ">
                     <div class="img-work ">
-                        <img src="{% static 'vet/img/alimentos.webp'%} " alt=" ">
+                        <img src="{% static 'vet/img/comida.png'%} " alt=" ">
                     </div>
                     <div class="textos-work ">
-                        <h4>ALIMENTOS</h4>
+                        <h4>Alimentos.</h4>
                     </div>
                 </div>
                 <div class="cont-work diseño ">
                     <div class="img-work ">
-                        <img src="{% static 'vet/img/collares.jpg'%} " alt=" ">
+                        <img src="{% static 'vet/img/collar.jpg'%} " alt=" ">
                     </div>
                     <div class="textos-work ">
-                        <h4>PRODUCTOS</h4>
+                        <h4>Productos.</h4>
                     </div>
                 </div>
                 <div class="cont-work diseño ">
@@ -269,7 +214,7 @@
                         <img src="{% static 'vet/img/otros.jpg'%} " alt=" ">
                     </div>
                     <div class="textos-work ">
-                        <h4>OTROS</h4>
+                        <h4>Otros.</h4>
                     </div>
                 </div>
                 <div class="cont-work marketing ">
@@ -277,10 +222,9 @@
                         <img src="{% static 'vet/img/galeria.jpg'%} " alt=" ">
                     </div>
                     <div class="textos-work ">
-                        <h4>Galeria</h4>
+                        <h4>Galeria.</h4>
                     </div>
                 </div>
-                <hr>
             </div>
         </section>
     </main>
@@ -288,7 +232,7 @@
     <footer id="contacto ">
         <div class="footer contenedor ">
             <div class="marca-logo ">
-                <img src="{% static 'vet/img/logo.png'%}" alt="">
+                <img src="{% static 'vet/img/logo2.png'%}" alt="">
             </div>
             <div class="iconos ">
                 <i class="fa-brands fa-facebook "></i>

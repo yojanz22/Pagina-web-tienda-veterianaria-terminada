@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
-from .forms import MascotaForm
+from .forms import MascotaForm, CustomUserCreationForm
 from .models import Mascota
+from django.contrib.auth import authenticate,login
+from django.contrib import messages
 
 '''
 class Persona:
@@ -36,8 +38,23 @@ def galeria(request):
     return render(request, 'vet/galeria.html')  
 
 def registro(request):
+    data= {
+        'form': CustomUserCreationForm()
+    }
     
-    return render(request, 'vet/registro.html')  
+    if request.method == 'POST':
+        formulario = CustomUserCreationForm(data=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            user = authenticate(username=formulario.cleaned_data["username"], password =formulario.cleaned_data["password1"])
+            messages.success(request, 'Usuario {username} creado!')
+            login(request)
+            
+            
+            return redirect(to="index")
+        data["form"] = formulario
+    
+    return render(request, 'vet/registration/registro.html', data)  
 
 
 def agregar_mascota(request):
@@ -82,3 +99,4 @@ def eliminar_mascota(request, id):
     mascota.delete() #delete from Vehiculo where patente = id
     
     return redirect(to='mascotas')
+

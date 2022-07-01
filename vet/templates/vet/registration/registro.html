@@ -9,9 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     
-    <title>LOGIN</title>
+    <title>REGISTRO DE USUARIO</title>
 </head>
-
 <body>
     {% load crispy_forms_tags %}
     <div class="container">
@@ -22,18 +21,18 @@
             <div class="col-12 col-md-6 offset-md-3">
                 <div class="card">
                     <div class="card-body">
-                        <h2> Inicio de sesion</h2>
+                        <h2> Registro de usuario</h2>
                         <hr>
                         <form action="", method="post">
 
                             {% csrf_token %}
                             {{ form | crispy}}
-                            <input type="submit" value="Ingresar" class="btn btn-success float-lefth"> or
-                            <a href ="{% provider_login_url 'google' method = 'oauth2' %}"><img src = "{% static 'vet/img/google.png' %}" width = "32" height = "32"/></a>
+                            <input type="submit" value="registrar" class="btn btn-success float-lefth"> or
+                            <a href="{% provider_login_url 'google' method = 'oauth2' %}"><img src = "{% static 'vet/img/google.png' %}" width = "32" height = "32"/></a>
                             <hr>
-                            <a href="{% url 'index'%}">Ir al Home</a> |
-                            <a href="{% url 'registro'%}">Ir al Registro</a>
-
+                            <a href="{% url 'index'%}">Ir al home</a> |
+                            <a href="{% url 'login'%}">Ir al login</a>
+                            
                         </form>
                     </div>
 
@@ -44,5 +43,3 @@
         </div>
 
     </div>
-</body>
-</html>
