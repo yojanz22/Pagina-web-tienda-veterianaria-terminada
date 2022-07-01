@@ -8,6 +8,11 @@
         flex-wrap: wrap;
     }
     
+    label {
+        display: inline-block;
+        width: 80px;
+    }
+    
     main {
         max-width: 800px;
         width: 90%;
@@ -168,7 +173,7 @@
     /* Conten */
     
     .contenedorR {
-        position: relative;
+        position: center;
         width: auto;
         height: auto;
         text-align: justify;
@@ -177,8 +182,35 @@
         flex-wrap: wrap;
         font-size: 20px;
     }
+    
+    label {
+        display: inline-block;
+        width: 80px;
+    }
     /* Definimos el ancho del Scroll */
     
     .contenedorR::-webkit-scrollbar {
         width: 22px;
+    }
+    
+    @media only screen and (max-width: 650px) {
+        .trail div {
+            padding: 1rem;
+        }
+    }
+    
+    .active {
+        opacity: 1 !important;
+    }
+    
+    @media only screen and (max-width: 800px) {
+        html {
+            font-size: 57%;
+        }
+    }
+    
+    @media only screen and (max-width: 1000px) {
+        body {
+            padding: 0;
+        }
     }

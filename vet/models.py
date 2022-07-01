@@ -1,3 +1,4 @@
+from email.policy import default
 from statistics import mode
 from tkinter import CASCADE
 from django.db import models
@@ -23,3 +24,24 @@ class Mascota(models.Model):
     imagen = models.ImageField(upload_to="mascotas", null=True)
     def __str__(self):
         return self.nombre
+
+class Producto(models.Model):
+    idProducto = models.IntegerField(auto_created=True,primary_key=True,verbose_name='Id' )
+    nombreP = models.CharField(max_length=50,verbose_name='nombre')
+    descripcion = models.CharField(max_length=100,verbose_name='descripcion')
+    precio = models.IntegerField(verbose_name='precio')
+    cantidadInventario = models.IntegerField(default=0.0)
+    fechaIngreso = models.DateTimeField(auto_now_add=True)
+    fechaActualizado = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.nombreP
+
+
+
+
+
+
+
+
+

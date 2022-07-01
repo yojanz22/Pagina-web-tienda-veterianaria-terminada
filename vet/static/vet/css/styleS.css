@@ -195,20 +195,20 @@ html {
 }
 
 .slider .box3 {
-    background-color: #00501D;
+    background-color: #131313;
 }
 
 .slider .box3 .illustration .inner {
-    background-color: #00FF44;
+    background-color: #2e2e2e;
 }
 
 .slider .box3 .illustration .inner::after,
 .slider .box3 .illustration .inner::before {
-    background-color: rgba(0, 255, 68, 0.4);
+    background-color: rgba(15, 17, 16, 0.4);
 }
 
 .slider .box3 button {
-    background-color: #00FF44;
+    background-color: #111111;
 }
 
 .slider .box4 {

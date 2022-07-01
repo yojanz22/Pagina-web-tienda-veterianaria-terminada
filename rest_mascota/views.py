@@ -1,15 +1,18 @@
-from operator import methodcaller
 from django.shortcuts import render
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 from vet.models import Mascota
 from rest_mascota.serializers import MascotaSerializer
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 
 @csrf_exempt
 @api_view(['GET','POST'])
+@permission_classes((IsAuthenticated,))
 def lista_mascota(request):
     if request.method == 'GET':
         lista_mascota = Mascota.objects.all()
@@ -26,6 +29,7 @@ def lista_mascota(request):
         
         
 @api_view(['GET','PUT','DELETE'])
+@permission_classes((IsAuthenticated,))
 def detalle_mascota(request, mas):
     try:
         mascota= Mascota.objects.get(idMascota = mas)
@@ -35,16 +39,14 @@ def detalle_mascota(request, mas):
     if request.method == 'GET':
         serializer = MascotaSerializer(mascota)
         return Response(serializer.data)
-    
-    elif request.method == 'PUT':
+    elif request.method  == "PUT":
         dataM = JSONParser().parse(request)
-        serializer = MascotaSerializer(data=dataM)
+        serializer = MascotaSerializer(mascota,data=dataM)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        else: 
+        else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
     elif request.method == 'DELETE':
         mascota.delete()
         return Response(status = status.HTTP_204_NO_CONTENT)
