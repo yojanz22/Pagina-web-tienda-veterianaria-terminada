@@ -4,4 +4,4 @@ from vet.models import Producto
 class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
-        fields = ['idProducto','nombreP','descripcion','precio','cantidadInventario','fechaIngreso','fechaActualizado']
+        fields = ['idProducto','nombreP','descripcion','precio','cantidadInventario','fechaIngreso']
