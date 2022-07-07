@@ -48,17 +48,20 @@
             </div>
 
             <body>
-                <div class="contenedorL">
+                <div class="contenedorR">
                     <div class="contenedor">
                         <h1>Categorias animales</h1>
 
                         <div class="contenedor-botones">
 
-
-                            <a button class="btn btn-3 hover-border-5" input type="submit" class="btn btn-primary" value="Enviar" href="{% url 'agregar_mascota' %}"><span style="color: white">Agregar mascota</span></a>
-
-                            <a button class="btn btn-3 hover-border-5" input type="submit" class="btn btn-primary" value="Enviar" href="{% url 'listado_adopcion' %}"><span style="color: white">Lista de adopcion</span></a>
-
+                            {% if perms.vet.add_mascota %}
+                            <a button class="btn btn-3 hover-border-5" input type="submit" class="btn btn-primary" value="Enviar" 
+                            href="{% url 'agregar_mascota' %}"><span>Agregar mascota</span></a>
+                            {%endif%}
+                            {% if perms.vet.view_mascota %}
+                            <a button class="btn btn-3 hover-border-5" input type="submit" class="btn btn-primary" value="Enviar"
+                            href="{% url 'listado_adopcion' %}"><span>Lista de adopcion</span></a>
+                            {% endif %}
 
                         </div>
                     </div>

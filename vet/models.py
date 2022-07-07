@@ -32,7 +32,6 @@ class Producto(models.Model):
     precio = models.IntegerField(verbose_name='precio')
     cantidadInventario = models.IntegerField(default=0.0)
     fechaIngreso = models.DateTimeField(auto_now_add=True)
-    fechaActualizado = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.nombreP

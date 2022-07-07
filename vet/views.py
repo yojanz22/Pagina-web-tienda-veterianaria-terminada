@@ -3,6 +3,7 @@ from .forms import MascotaForm, CustomUserCreationForm
 from .models import Mascota
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 
 '''
 class Persona:
@@ -56,7 +57,7 @@ def registro(request):
     
     return render(request, 'vet/registration/registro.html', data)  
 
-
+@permission_required('vet.add_mascota')
 def agregar_mascota(request):
     datos = {
         'form' : MascotaForm()
@@ -70,7 +71,7 @@ def agregar_mascota(request):
         else:
             datos['mensaje'] = "Revise datos"
     return render(request,'vet/agregar_mascota.html', datos)
-
+@permission_required('vet.view_mascota')
 def listado_adopcion(request):
     mascotas = Mascota.objects.all() #select
     data = {
@@ -78,7 +79,7 @@ def listado_adopcion(request):
     }
     return render(request, 'vet/listado_adopcion.html',data)
 
-
+@permission_required('vet.change_mascota')
 def modificar_mascota(request, id):
     mascota = Mascota.objects.get(nombre = id) #select * from Vehiculo where patente = id
     datos = {
@@ -93,7 +94,7 @@ def modificar_mascota(request, id):
         else:
             datos['mensaje'] = "Revise datos, no se modificó"
     return render(request, 'vet/modificar_mascota.html', datos)
-
+@permission_required('vet.delete_mascota')
 def eliminar_mascota(request, id):
     mascota = Mascota.objects.get(nombre = id)
     mascota.delete() #delete from Vehiculo where patente = id
